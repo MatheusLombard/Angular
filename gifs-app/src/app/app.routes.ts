@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import TrendingPage from './gifs/pages/trending-page/trending-page';
 
 export const routes: Routes = [
   {
@@ -12,6 +13,10 @@ export const routes: Routes = [
       {
         path: 'search',
         loadComponent: () => import('./gifs/pages/search-page/search-page'),
+      },
+      {
+        path: '**',
+        component: TrendingPage
       },
     ],
   },
