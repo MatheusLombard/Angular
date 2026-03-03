@@ -1,0 +1,19 @@
+<p>This is my first component</p>
+
+<h1>{{ title }}</h1>
+
+
+<button [disabled]="isDisabled" (click)="onCLick()">Click me</button>
+<button [disabled]="isDisabled" (click)="onCLick()">Toggle</button>
+
+
+<h1>Count: {{ count() }}</h1>
+<h1>Count: {{ secondCount() }}</h1>
+<h1>Double:{{ doubleCount() }}</h1>
+
+
+<button (click)="increaseCounter()">+</button>
+<button (click)="decreaseCounter()">-</button>
+<button (click)="resetCounter()">CLEAR</button>
+
+
