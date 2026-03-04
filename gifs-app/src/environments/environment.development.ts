@@ -3,4 +3,7 @@ export const environment = {
   companyName: 'Gifs',
   companySlogan: 'Maneja tus gifs',
 
+  //APIKEYS
+  giphyApiKeys: 'EIepZCoRrwBj3oBlOl97mOWOnuRpHYmT'
+  
 };
