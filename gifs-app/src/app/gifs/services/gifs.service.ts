@@ -30,4 +30,15 @@ export class GifService {
         console.log(gifs)
       } )
   }
+
+  searchGifs(query: string){
+    this.http.get<GiphyResponse>(`${environment.giphyUrl}/gifs/search`, {
+      params:{  
+        api_key: environment.giphyApiKeys,
+        q: query
+      }
+    }).subscribe((resp) => {
+      console.log(resp)
+    })
+  }
 }
