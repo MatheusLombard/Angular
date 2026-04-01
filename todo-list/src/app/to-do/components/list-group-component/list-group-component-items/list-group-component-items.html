@@ -1,0 +1,7 @@
+  <div class="list-group-items">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 15px;">
+      <button class="mark-as-read" (click)="markAsRead()" [class.readed]="labelTasks().read"></button>
+      <p class="label" [class.readed]="labelTasks().read">{{labelTasks().label}}</p>
+    </div>
+    <button class="delete-item" (click)="delete()">x</button>
+  </div>

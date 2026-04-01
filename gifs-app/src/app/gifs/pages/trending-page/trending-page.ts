@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, ElementRef, inject, viewChild } from '@angular/core';
+import { ScrollStateServices } from './../../../shared/services/scroll-state.service';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, viewChild } from '@angular/core';
 import { GifList } from '../../components/gif-list/gif-list';
 import { GifService } from '../../services/gifs.service';
 
@@ -19,18 +20,40 @@ import { GifService } from '../../services/gifs.service';
 
 @Component({
   selector: 'app-trending-page',
-  imports: [GifList],
   templateUrl: './trending-page.html',
 })
-export default class TrendingPage {
+export default class TrendingPage implements AfterViewInit {
   // images: string[] = imageUrls
 
   gifService = inject(GifService);
+  scrollStateServices = inject(ScrollStateServices)
 
-  scrollDivRef = viewChild<ElementRef>('groupDiv')
+  scrollDivRef = viewChild<ElementRef<HTMLDivElement>>('groupDiv');
+
+
+  ngAfterViewInit(): void {
+    const scrollDiv = this.scrollDivRef()?.nativeElement;
+    if(!scrollDiv) return;
+
+    scrollDiv.scrollTop = this.scrollStateServices.trendingScrollState();
+  }
+
 
   onScroll(event: Event) {
-    const scrollDiv = this.scrollDivRef()?.nativeElement
-    console.log(scrollDiv)
+    const scrollDiv = this.scrollDivRef()?.nativeElement;
+    if(!scrollDiv) return;
+    const scrollTop = scrollDiv.scrollTop;
+    const clientHeight = scrollDiv.clientHeight;
+    const scrollHeight = scrollDiv.scrollHeight;
+    // console.log({ScrollToal: scrollTop + clientHeight, scrollHeight})
+    // console.log({clientHeight})
+
+    const isAtBottom = scrollTop + clientHeight + 300 >= scrollHeight;
+
+    this.scrollStateServices.trendingScrollState.set(scrollTop)
+
+    if( isAtBottom ){
+      this.gifService.loadTrendingGifs();
+    }
   }
 }

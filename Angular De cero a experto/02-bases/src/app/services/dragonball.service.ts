@@ -18,6 +18,7 @@ export class DragonballService {
   })
 
   addCharacter(character: Character) {
+
     this.characters.update((list) => [...list, character])
   }
 

@@ -1,0 +1,15 @@
+<main class="main">
+  <div class="main-container">
+    <!-- HEADER -->
+    <header-component />
+    <!-- /HEADER -->
+
+    <!-- TODO-INPUT -->
+    <todo-input-component (newTaskOutput)="tasksService.addTask($event)"/>
+    <!-- /TODO-INPUT -->
+
+    <!-- LIST-GROUP -->
+    <list-group-component [tasks]="tasksService.tasks()"/>
+    <!-- /LIST-GROUP -->
+  </div>
+</main>

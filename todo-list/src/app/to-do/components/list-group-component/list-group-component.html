@@ -1,0 +1,5 @@
+<section class="list-group">
+  @for (item of tasks(); track item.id) {
+    <app-list-group-component-items [labelTasks]="item"/>
+  }
+</section>

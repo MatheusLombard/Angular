@@ -1,0 +1,4 @@
+<section class="todo-input">
+ <input type="text" placeholder="Add your task" (input)="labelTask.set(inputTask.value)" [value]="labelTask()" #inputTask/>
+  <button type="submit" (click)="addTask()">Add</button>
+</section>

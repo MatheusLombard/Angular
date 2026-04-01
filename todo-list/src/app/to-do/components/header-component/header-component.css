@@ -1,0 +1,15 @@
+header{
+  width: 100%;
+  padding: 16px 10px;
+  display: flex;
+  gap: 10px;
+}
+.title .h1-title{
+  font-family: 'Courier New', Courier, monospace;
+  color: #032A59;
+  line-height: 70px;
+}
+.logo .img-logo{
+  width: 70px;
+
+}
