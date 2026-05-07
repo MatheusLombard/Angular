@@ -3,6 +3,7 @@ import { SearchInput } from '../../components/search-input/search-input';
 import { CountryList } from '../../components/country-list/country-list';
 import { Country } from '../../services/country';
 import { CountryInterface } from '../../interfaces/country.interface';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-by-capital-page',
@@ -11,15 +12,15 @@ import { CountryInterface } from '../../interfaces/country.interface';
 })
 export class ByCapitalPage {
   countryService = inject(Country);
-  query = signal()
+  query = signal<string>('')
 
-  countryResouce = resource({
-    request: () => ({
-      query: this.query()
-    }),
-    loader: async({abortSignal}) =>{
-      if(!this.query) return [];
-      return this.countryService.searchByCapital()
+  countryResource = resource({
+    params: () => ({ query: this.query() }),
+    loader: async({params}) =>{
+      if(!params.query) return [];
+      return await firstValueFrom(
+        this.countryService.searchByCapital(params.query)
+      )
     }
   })
 //   isLoading = signal(false);
@@ -43,7 +44,7 @@ export class ByCapitalPage {
 //       },
 //     });
 //   }
-// }
+}
 
 // (countries) => {
 

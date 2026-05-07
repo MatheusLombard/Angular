@@ -1,7 +1,7 @@
 <app-search-input  (inputValue)="query.set($event)" label="capital"/>
 
-<!-- @if (isError()) {
-  <h3>{{isError()}}</h3>
-}@else {
-  <app-country-list [countries]="countries()"/>
-} -->
+@if (countryResource.error()) {
+  <h3>{{countryResource.error()}}</h3>
+}@if(countryResource.hasValue() && countryResource.value() !== undefined) {
+  <app-country-list [countries]="countryResource.value()"/>
+}
